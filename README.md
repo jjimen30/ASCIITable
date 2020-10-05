@@ -69,42 +69,54 @@ A FastTable is a fast way to create a table. It is optimized and will not resize
 •-----------+-----------+-----------•
 ```
 
-## Sample Code With Lambda
+### Sample Code With Lambda
 
 ``` Java
-	// Initialize the table with the number of columns.
-	FastTable table = new FastTable(7);
+		// Initialize the table with the number of columns.
+		FastTable table = new FastTable(7);
 
-	// Add the header.
-	String[] h = { "cell1", "cell2", "cell3", "cell4", "cell5", "cell6", "cell7" };
+		// Add the header.
+		String[] h = { "cell1", "cell2", "cell3", "cell4", "cell5", "cell6", "cell7" };
 
-	table.addHeader(h);
+		table.addHeader(h);
 
-	// Some data we want to manipulate.
-	int[] intArray = { 32, 453, 86, 23, 56, 23, 90 };
+		// Some data we want to manipulate.
+		int[] intArray = { 32, 453, 86, 23, 56, 23, 90 };
 
-	// fillRow takes a callback the returned string from this callback function will
-	// be added to the indexed cell.
-	table.fillRow((i) -> {
-		return Integer.toString(intArray[i]);
-	});
-
-	table.fillRow((i) -> {
-		return Integer.toString(intArray[i] * 34);
-	});
-
-	table.fillRow((i) -> {
-		if (intArray[i] % 2 == 0)
-			return Integer.toString(intArray[i] / 2);
-		else
+		// fillRow takes a callback the returned string from this callback function will
+		// be added to the indexed cell.
+		table.fillRow((i) -> {
 			return Integer.toString(intArray[i]);
-	});
+		});
 
-	// Print the table.
-	table.print();
+		table.fillRow((i) -> {
+			return Integer.toString(intArray[i] * 34);
+		});
+
+		table.fillRow((i) -> {
+			if (intArray[i] % 2 == 0)
+				return Integer.toString(intArray[i] / 2);
+			else
+				return Integer.toString(intArray[i]);
+		});
+
+		// Print the table and then add more rows.
+		table.print();
+		System.out.printls()
+		System.out.printls()
+		
+		table.fillRow((i) -> {
+			if (intArray[i] % 2 == 0)
+				return Integer.toString(intArray[i] * 23);
+			else
+				return Integer.toString(intArray[i] - 32);
+		});
+
+		// Print the table.
+		table.print();
 ```
 
-### Sample Output
+### Sample Output With Lambda
 
 ``` 
 •----------+----------+----------+----------+----------+----------+----------•
@@ -116,4 +128,19 @@ A FastTable is a fast way to create a table. It is optimized and will not resize
 •----------+----------+----------+----------+----------+----------+----------•
 |       16 |      453 |       43 |       23 |       28 |       23 |       45 |
 •----------+----------+----------+----------+----------+----------+----------•
+
+
+
+•----------+----------+----------+----------+----------+----------+----------•
+| cell1    | cell2    | cell3    | cell4    | cell5    | cell6    | cell7    |
+•----------+----------+----------+----------+----------+----------+----------•
+|       32 |      453 |       86 |       23 |       56 |       23 |       90 |
+•----------+----------+----------+----------+----------+----------+----------•
+|     1088 |    15402 |     2924 |      782 |     1904 |      782 |     3060 |
+•----------+----------+----------+----------+----------+----------+----------•
+|       16 |      453 |       43 |       23 |       28 |       23 |       45 |
+•----------+----------+----------+----------+----------+----------+----------•
+|      736 |      421 |     1978 |       -9 |     1288 |       -9 |     2070 |
+•----------+----------+----------+----------+----------+----------+----------•
+
 ```

@@ -27,6 +27,7 @@ public class FastTable {
 
 	// Where the table is created.
 	private StringBuilder sb = new StringBuilder();
+	private StringBuilder temp = new StringBuilder();
 
 	// Table dimensions.
 	private int colSize = 8;
@@ -37,7 +38,7 @@ public class FastTable {
 	private boolean firstRow = true;
 	private boolean lastRow = false;
 	private boolean neePadding = false;
-	private boolean isPrinted = false;
+	private boolean hasHeader = false;
 
 	/**
 	 * <p>
@@ -74,13 +75,15 @@ public class FastTable {
 	 *                    will default to right aligned.
 	 */
 	public void addHeader(String[] headers, boolean rightAligned) {
+		if (hasHeader)
+			return;
 
 		for (String el : headers) {
 			int elSize = el.length();
 			if (elSize > colSize)
 				colSize = elSize;
 		}
-
+		hasHeader = true;
 		// addRow(headers, leftAligned = confusing af
 		addRow(headers, !rightAligned);
 	}
@@ -131,6 +134,8 @@ public class FastTable {
 		if (padding != null)
 			addRow(padding);
 
+		temp = new StringBuilder();
+		temp.append(sb);
 	}
 
 	/**
@@ -160,20 +165,14 @@ public class FastTable {
 	 * </p>
 	 */
 	public void print() {
+		lastRow = true;
+		addCellBorder();
+		lastRow = false;
 
-		if (!isPrinted) {
-			isPrinted = true;
-
-			lastRow = true;
-			addCellBorder();
-
-			// print row
-			System.out.print(sb.toString());
-			return;
-		}
-
+		// print table
 		System.out.print(sb.toString());
 
+		sb = temp;
 	}
 
 	private void addCellBorder() {
@@ -237,16 +236,15 @@ public class FastTable {
 
 	@Override
 	public String toString() {
-		if (!isPrinted) {
-			isPrinted = true;
 
-			lastRow = true;
-			addCellBorder();
+		StringBuilder result = new StringBuilder();
 
-			return sb.toString();
-		}
+		addCellBorder();
 
-		return sb.toString();
+		result.append(sb);
+		sb = temp;
+
+		return result.toString();
 	}
 
 	public static void main(String[] arg) {
@@ -279,7 +277,18 @@ public class FastTable {
 				return Integer.toString(intArray[i]);
 		});
 
+		// Print the table and then add more rows.
+		table.print();
+
+		table.fillRow((i) -> {
+			if (intArray[i] % 2 == 0)
+				return Integer.toString(intArray[i] * 23);
+			else
+				return Integer.toString(intArray[i] - 32);
+		});
+
 		// Print the table.
 		table.print();
+
 	}
 }
