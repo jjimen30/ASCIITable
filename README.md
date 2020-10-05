@@ -8,7 +8,8 @@ An API to easily generate CLI tables. I created this library to save time when w
 
 ## How To Use
 
-**FastTable** 
+### **FastTable**
+
 A FastTable is a fast way to create a table. It is optimized and will not resize automatically. The cell width will be calculated according to the longest `String` in the header. 
 
 ### Sample Code
