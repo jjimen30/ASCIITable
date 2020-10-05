@@ -1,6 +1,6 @@
 # ASCII Table
 
-** A lightweight ASCII table generator ** 
+**A lightweight ASCII table generator** 
 
 ## About
 
@@ -8,8 +8,10 @@ A table to easily generate CLI tables. I created this library to save me some ti
 
 ## How To Use
 
-** FastTable ** 
-A FastTable is a fast way to create a table. It is optimized and will not resized. The cell width will be calculated according to the longest `String` in the header.
+**FastTable** 
+A FastTable is a fast way to create a table. It is optimized and will not resize automatically. The cell width will be calculated according to the longest `String` in the header. 
+
+### Sample Code
 
 ``` Java
 	
@@ -25,4 +27,23 @@ A FastTable is a fast way to create a table. It is optimized and will not resize
 
 	t.print();
 	
+```
+
+### Sample Output
+
+``` 
+o-----------+-----------+-----------o
+|      NAME | LAST NAME |       AGE |
+|-----------+-----------+-----------|
+|      John |     Danky |        23 |
+|-----------+-----------+-----------|
+|     Peter | The cell  |        23 |
+|           | with add  |           |
+|           | padding v |           |
+|           | ertically |           |
+|           |  to accom |           |
+|           | odate lon |           |
+|           | g strings |           |
+o-----------+-----------+-----------o
+
 ```
