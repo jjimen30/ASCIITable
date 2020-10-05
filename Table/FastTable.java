@@ -121,8 +121,8 @@ public class FastTable {
 					Arrays.fill(padding, " ");
 					neePadding = true;
 				}
-				first = addCellString(elements[i].substring(0, colSize), first, leftAligned);
-				padding[i] = elements[i].substring(colSize);
+				first = addCellString(elements[i].substring(0, colSize).trim(), first, leftAligned);
+				padding[i] = elements[i].substring(colSize).trim();
 			} else {
 				first = addCellString(elements[i], first, leftAligned);
 			}
@@ -132,7 +132,7 @@ public class FastTable {
 		sb.append(NEW_LINE);
 
 		if (padding != null)
-			addRow(padding);
+			addRow(padding, true);
 
 		temp = new StringBuilder();
 		temp.append(sb);
@@ -250,44 +250,22 @@ public class FastTable {
 	public static void main(String[] arg) {
 
 		// Initialize the table with the number of columns.
-		FastTable table = new FastTable(7);
+		FastTable table = new FastTable(3);
 
-		// Add the header.
-		String[] h = { "cell1", "cell2", "cell3", "cell4", "cell5", "cell6", "cell7" };
+		// Call addHeader and pass a String array. The header is left
+		// aligned by default. Use overloaded constructor to right align.
+		table.addHeader(new String[] { "NAME", "LAST NAME", "AGE" });
 
-		table.addHeader(h);
+		// Add one row at a time.
+		table.addRow(new String[] { "John", "Danky", "23" });
+		table.addRow(new String[] { "Peter",
+				"The cell will add padding vertically to accomodate according to the column width", "23" });
+		table.addRow(new String[] { "James", "Rondonon", "43" });
 
-		// Some data we want to manipulate.
-		int[] intArray = { 32, 453, 86, 23, 56, 23, 90 };
+		// Use the overloaded constructor to add left aligned.
+		table.addRow(new String[] { "Spunky", "McDonomonk", "34" }, true);
 
-		// fillRow takes a callback the returned string from this callback function will
-		// be added to the indexed cell.
-		table.fillRow((i) -> {
-			return Integer.toString(intArray[i]);
-		});
-
-		table.fillRow((i) -> {
-			return Integer.toString(intArray[i] * 34);
-		});
-
-		table.fillRow((i) -> {
-			if (intArray[i] % 2 == 0)
-				return Integer.toString(intArray[i] / 2);
-			else
-				return Integer.toString(intArray[i]);
-		});
-
-		// Print the table and then add more rows.
-		table.print();
-
-		table.fillRow((i) -> {
-			if (intArray[i] % 2 == 0)
-				return Integer.toString(intArray[i] * 23);
-			else
-				return Integer.toString(intArray[i] - 32);
-		});
-
-		// Print the table.
+		table.addRow(new String[] { "The table adjusts the cell height automatically", "Trump", "12" });
 		table.print();
 
 	}

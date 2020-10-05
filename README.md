@@ -45,27 +45,27 @@ A FastTable is a fast way to create a table. It is optimized and will not resize
 •-----------+-----------+-----------•
 |      John |     Danky |        23 |
 •-----------+-----------+-----------•
-|     Peter | The cell  |        23 |
+|     Peter |  The cell |        23 |
 |           | will add  |           |
 |           | padding v |           |
 |           | ertically |           |
-|           |  to accom |           |
-|           | odate acc |           |
-|           | ording to |           |
-|           |  the colu |           |
-|           |  mn width |           |
+|           | to accomo |           |
+|           | date acco |           |
+|           | rding to  |           |
+|           | the colum |           |
+|           | n width   |           |
 •-----------+-----------+-----------•
 |     James |  Rondonon |        43 |
 •-----------+-----------+-----------•
 | Spunky    | McDonomon | 34        |
-|           |         k |           |
+|           | k         |           |
 •-----------+-----------+-----------•
 | The table |     Trump |        12 |
-|  adjusts  |           |           |
-| the cell  |           |           |
-| height au |           |           |
-| tomatical |           |           |
-|        ly |           |           |
+| adjusts t |           |           |
+| he cell h |           |           |
+| eight aut |           |           |
+| omaticall |           |           |
+| y         |           |           |
 •-----------+-----------+-----------•
 ```
 
@@ -104,7 +104,7 @@ A FastTable is a fast way to create a table. It is optimized and will not resize
 		table.print();
 		System.out.printls()
 		System.out.printls()
-		
+
 		table.fillRow((i) -> {
 			if (intArray[i] % 2 == 0)
 				return Integer.toString(intArray[i] * 23);
@@ -144,3 +144,5 @@ A FastTable is a fast way to create a table. It is optimized and will not resize
 •----------+----------+----------+----------+----------+----------+----------•
 
 ```
+
+## The `Table` API is currently uninplemented.
