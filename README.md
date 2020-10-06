@@ -102,8 +102,8 @@ A FastTable is a fast way to create a table. It is optimized and will not resize
 
 		// Print the table and then add more rows.
 		table.print();
-		System.out.printls()
-		System.out.printls()
+		System.out.println();
+		System.out.println();
 
 		table.fillRow((i) -> {
 			if (intArray[i] % 2 == 0)
