@@ -4,7 +4,7 @@
 
 ## About
 
-An API to easily generate CLI tables. I created this library to save time when working on CS class assignements, it is also a great tool for debugging. No tricky syntax, no clever notation, just a simple table making library. 
+An API to easily generate CLI tables. I created this library to save time when working on CS class assignements, it is also a great tool for debugging.
 
 ## How To Use
 
